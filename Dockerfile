@@ -3,7 +3,12 @@ FROM python:3.12-slim
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
-RUN groupadd -r app && useradd -r -g app app
+
+# Create the app user WITH a home directory (-m)
+RUN groupadd -r app && useradd -m -r -g app app
+
+# Disable uv runtime cache inside the container
+ENV UV_NO_CACHE=1
 
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-install-project --no-dev
