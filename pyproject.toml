@@ -9,6 +9,9 @@ dependencies = [
   "vision-agents-plugins-gemini",
   "vision-agents-plugins-getstream",
   "getstream",
+  "psycopg[binary,pool]>=3.3.6",
+  "redis>=8.1.0",
+  "httpx>=0.28.1",
 ]
 
 [dependency-groups]
